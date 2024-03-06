@@ -16,9 +16,16 @@ app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-app.use((err, req, res, next) => {
-  const { status = 500, message = "Server error" } = err;
-  res.status(status).json({ message });
+app.use((err, _, res, next) => {
+  const { status = 500, message } = err;
+
+  const messageText =
+    status === 500 ? `Server error! Details: ${message}` : message;
+
+  res.status(status).json({
+    message: messageText,
+  });
+
 });
 
 app.listen(3000, () => {
