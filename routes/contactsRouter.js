@@ -5,12 +5,15 @@ import {
   deleteContact,
   createContact,
   updateContact,
-  updateStatusContact
-} from "../controllers/contactsControllers.js";
+  updateStatusContactById,
+} from "../controllers/contactsController.js";
 
-import isValidId from "../middleware/isValidId.js"
+import {isValidId} from '../middleware/isValidId.js'
+import {authenticate} from '../middleware/authenticate.js'
 
 const contactsRouter = express.Router();
+
+contactsRouter.use(authenticate);
 
 contactsRouter.get("/", getAllContacts);
 
@@ -22,6 +25,6 @@ contactsRouter.post("/", createContact);
 
 contactsRouter.put("/:id", isValidId, updateContact);
 
-contactsRouter.patch("/:id", isValidId, updateStatusContact);
+contactsRouter.patch("/:id/favorite", isValidId, updateStatusContactById);
 
 export default contactsRouter;
