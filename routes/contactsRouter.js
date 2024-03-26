@@ -8,8 +8,9 @@ import {
   updateStatusContactById,
 } from "../controllers/contactsController.js";
 
-import {isValidId} from '../middleware/isValidId.js'
-import {authenticate} from '../middleware/authenticate.js'
+import { isValidId } from "../middleware/isValidId.js";
+import { authenticate } from "../middleware/authenticate.js";
+import { upload } from "../middleware/upload.js";
 
 const contactsRouter = express.Router();
 
@@ -21,7 +22,7 @@ contactsRouter.get("/:id", isValidId, getOneContact);
 
 contactsRouter.delete("/:id", isValidId, deleteContact);
 
-contactsRouter.post("/", createContact);
+contactsRouter.post("/", upload.single("avatars"), createContact);
 
 contactsRouter.put("/:id", isValidId, updateContact);
 
