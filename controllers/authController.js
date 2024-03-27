@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import gravatar from "gravatar";
 import Jimp from "jimp";
-
 import fs from "fs/promises";
 import path from "path";
 

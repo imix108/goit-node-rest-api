@@ -54,7 +54,7 @@ export const deleteContact = ctrlWrapper(async (req, res) => {
     throw HttpError(404, `Contact with id:${id} not found`);
   }
   res.json({
-    message: "Delete success",
+    message: "Successfully deleted",
   });
 });
 
